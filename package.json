@@ -1,0 +1,21 @@
+{
+  "name": "test-app",
+  "version": "1.0.0",
+  "description": "aplicacao de teste para push post get",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:prod": "SERVER_PORT=3001 nodejs app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "server"
+  ],
+  "author": "celsoagra",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2"
+  }
+}
