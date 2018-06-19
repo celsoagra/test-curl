@@ -9,8 +9,6 @@ app.use(function(req, res, next) {
 
 app.use(bodyParser.json());
 var http = require('http');
-var server = http.createServer(app);
-server.listen(process.env.SOCKET_PORT || 8000, '0.0.0.0');
 
 app.post('/', function (req, res) {
     console.log("/", "post", req.body);
@@ -36,7 +34,10 @@ app.get('/', function (req, res) {
     res.send("{ \"msg\" : \"OK\" }");
 });
 
+var port = process.env.PORT || 3000;
 
-app.listen(process.env.SERVER_PORT || 3000, '0.0.0.0', function () {
-	console.log('server running...');
+app.set('port', port);
+var server = http.createServer(app);
+server.listen(port, '0.0.0.0', function () {
+        console.log('server running... on port' + port);
 });
