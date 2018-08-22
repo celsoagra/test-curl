@@ -42,6 +42,12 @@ app.get('/', function (req, res) {
     res.send("{ \"msg\" : \"OK\" }");
 });
 
+app.get('/img', function (req, res) {
+    console.log("/", "get");
+    res.setHeader('Content-Type', 'application/json');
+    res.send(`{ \"img\" : \"${imgbase64}\" }`);
+});
+
 var port = process.env.PORT || 3000;
 
 app.set('port', port);
