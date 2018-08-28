@@ -13,48 +13,57 @@ app.use(bodyParser.json());
 var http = require('http');
 
 app.post('/', function (req, res) {
-    console.log("/", "post", req.body);
+    console.log("/", "POST", req.body);
     res.setHeader('Content-Type', 'application/json');
     res.send("{ \"msg\" : \"OK\" }");
 });
 
 app.post('/img', function (req, res) {
-    console.log("/", "post", req.body);
+    console.log("/img", "POST", req.body);
     res.setHeader('Content-Type', 'application/json');
     res.send(`{ \"img\" : \"${imgbase64}\" }`);
 });
 
+app.post('/img-file', function (req, res) {
+    console.log("/img-file", "POST", req.body);
+    var img = new Buffer(imgbase64, 'base64');
+    
+    res.setHeader('Content-Type', 'image/jpeg');
+    res.setHeader('Content-Length', img.length);
+    res.end(img);
+});
+
+
 app.put('/', function (req, res) {
-    console.log("/", "put", req.body);
+    console.log("/", "PUT", req.body);
     res.setHeader('Content-Type', 'application/json');
     res.send("{ \"msg\" : \"OK\" }");
 });
 
 app.delete('/', function (req, res) {
-    console.log("/", "delete");
+    console.log("/", "DELETE");
     res.setHeader('Content-Type', 'application/json');
     res.send("{ \"msg\" : \"OK\" }");
 });
 
 app.get('/', function (req, res) {
-    console.log("/", "get");
+    console.log("/", "GET");
     res.setHeader('Content-Type', 'application/json');
     res.send("{ \"msg\" : \"OK\" }");
 });
 
 app.get('/img', function (req, res) {
-    console.log("/img", "get");
+    console.log("/img", "GET");
     res.setHeader('Content-Type', 'application/json');
     res.send(`{ \"img\" : \"${imgbase64}\" }`);
 });
 
 app.get('/img-file', function (req, res) {
-    console.log("/img-file", "get");
+    console.log("/img-file", "GET");
     var img = new Buffer(imgbase64, 'base64');
     
     res.setHeader('Content-Type', 'image/jpeg');
     res.setHeader('Content-Length', img.length);
-   
     res.end(img);
 });
 
