@@ -43,10 +43,21 @@ app.get('/', function (req, res) {
 });
 
 app.get('/img', function (req, res) {
-    console.log("/", "get");
+    console.log("/img", "get");
     res.setHeader('Content-Type', 'application/json');
     res.send(`{ \"img\" : \"${imgbase64}\" }`);
 });
+
+app.get('/img-file', function (req, res) {
+    console.log("/img-file", "get");
+    var img = new Buffer(imgbase64, 'base64');
+    
+    res.setHeader('Content-Type', 'image/jpeg');
+    res.setHeader('Content-Length', img.length);
+   
+    res.end(img);
+});
+
 
 var port = process.env.PORT || 3000;
 
