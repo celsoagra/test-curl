@@ -29,10 +29,8 @@ app.post('/img', function (req, res) {
 app.post('/img-file', function (req, res) {
     console.log("/img-file", "POST", req.body);
     var img = new Buffer(imgbase64, 'base64');
-    
-    res.setHeader('Content-Type', 'image/jpeg');
-    res.setHeader('Content-Length', img.length);
-    res.end(img);
+    res.writeHead(200, {'Content-Type': 'image/jpeg', 'Content-Length' : img.length });
+    res.end(img, 'binary');
 });
 
 app.put('/', function (req, res) {
