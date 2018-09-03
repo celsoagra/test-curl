@@ -24,11 +24,13 @@ app.post('/img', function (req, res) {
     res.send(`{ \"img\" : \"${imgbase64}\" }`);
 });
 
-app.get('/img-file', function (req, res) {
-    console.log("/img-file", "GET");
+app.post('/img-file', function (req, res) {
+    console.log("/img-file", "POST", req.body);
     var img = new Buffer(imgbase64, 'base64');
-    res.writeHead(200, {'Content-Type': 'image/jpeg', 'Content-Length' : img.length });
-    res.end(img, 'binary');
+    
+    res.setHeader('Content-Type', 'image/jpeg');
+    res.setHeader('Content-Length', img.length);
+    res.end(img);
 });
 
 app.put('/', function (req, res) {
@@ -58,12 +60,9 @@ app.get('/img', function (req, res) {
 app.get('/img-file', function (req, res) {
     console.log("/img-file", "GET");
     var img = new Buffer(imgbase64, 'base64');
-    
-    res.setHeader('Content-Type', 'image/jpeg');
-    res.setHeader('Content-Length', img.length);
-    res.end(img);
+    res.writeHead(200, {'Content-Type': 'image/jpeg', 'Content-Length' : img.length });
+    res.end(img, 'binary');
 });
-
 
 var port = process.env.PORT || 3000;
 
