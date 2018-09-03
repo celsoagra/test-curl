@@ -67,14 +67,14 @@ app.get('/img-file', function (req, res) {
 
 app.get('/img-html', function (req, res) {
     console.log("/img-html", "GET");
-    resp.writeHead(200, { 'Content-Type': 'text/html' });
-    resp.write(htmlImage);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(htmlImage);
 });
 
 app.post('/img-html', function (req, res) {
     console.log("/img-html", "POST", req.body);
-    resp.writeHead(200, { 'Content-Type': 'text/html' });
-    resp.write(htmlImage);
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(htmlImage);
 });
 
 var port = process.env.PORT || 3000;
